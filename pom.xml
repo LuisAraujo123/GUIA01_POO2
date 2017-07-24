@@ -34,19 +34,32 @@
             <version>6.0</version>
             <scope>provided</scope>
         </dependency>
-         <dependency>
+        <dependency>
             <groupId>mysql</groupId>
             <artifactId>mysql-connector-java</artifactId>
             <version>5.0.8</version>
         </dependency>
-        <!-- https://mvnrepository.com/artifact/org.webjars.bower/materialize -->
-        <dependency>
+        <!--La dependencia de materialize-->
+        <!--dependency>
             <groupId>org.webjars.bower</groupId>
-            <artifactId>materialize</artifactId>
-            <version>0.97.3</version>
+            <artifactId>Materialize</artifactId>
+            <version>0.96.0</version>
             <exclusions>
                 <exclusion>
-                    <groupId>org.webjars.bower</groupId>
+                    <groupId>org.webjars</groupId>
+                    <artifactId>jquery</artifactId>
+                </exclusion>
+            </exclusions>
+        </dependency-->
+        
+        <!--La dependencia de bootstrap-->
+        <dependency>
+            <groupId>org.webjars</groupId>
+            <artifactId>bootstrap</artifactId>
+            <version>3.2.0</version>
+            <exclusions>
+                <exclusion>
+                    <groupId>org.webjars</groupId>
                     <artifactId>jquery</artifactId>
                 </exclusion>
             </exclusions>
@@ -63,9 +76,41 @@
             <artifactId>jstl-api</artifactId>
             <version>1.2</version>
         </dependency>
+        <!-- https://mvnrepository.com/artifact/net.sf.jasperreports/jasperreports -->
+        <dependency>
+        <groupId>net.sf.jasperreports</groupId>
+        <artifactId>jasperreports</artifactId>
+        <version>6.1.0</version>
+        <exclusions>
+            <exclusion>
+                <groupId>com.lowagie</groupId>
+                <artifactId>itext</artifactId>
+            </exclusion>
+            <exclusion>
+                <groupId>org.olap4j</groupId>
+                <artifactId>olap4j</artifactId>
+            </exclusion>
+        </exclusions>
+        </dependency>
+        <!-- https://mvnrepository.com/artifact/net.sf.jasperreports/jasperreports-fonts -->
+        <dependency>
+            <groupId>net.sf.jasperreports</groupId>
+            <artifactId>jasperreports-fonts</artifactId>
+            <version>6.0.0</version>
+        </dependency> 
+        <!-- https://mvnrepository.com/artifact/org.codehaus.groovy/groovy-all -->
+        <dependency>
+            <groupId>org.codehaus.groovy</groupId>
+            <artifactId>groovy-all</artifactId>
+            <version>2.1.7</version>
+        </dependency>
+        <!-- https://mvnrepository.com/artifact/com.lowagie/itext -->
+        <dependency>
+            <groupId>com.lowagie</groupId>
+            <artifactId>itext</artifactId>
+            <version>2.1.7</version>
+        </dependency>
     </dependencies>
-    
-
     <build>
         <plugins>
             <plugin>
