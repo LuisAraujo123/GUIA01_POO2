@@ -7,8 +7,11 @@
 	<style name="SubTitle" forecolor="#666666" fontName="Arial" fontSize="18"/>
 	<style name="Column header" forecolor="#666666" fontName="Arial" fontSize="12" isBold="true"/>
 	<style name="Detail" fontName="Arial" fontSize="12"/>
+	<parameter name="nombUnidOrga" class="java.lang.String">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
 	<queryString>
-		<![CDATA[SELECT codi_visi, codi_unid_orga, nomb_unid_orga, codi_luga_entr, codi_luga_sali, fech_hora_entr_visi, fech_hora_sali_visi, moti_visi, visi.fech_alta, visi.fech_baja, visi.esta from visi inner join unid_orga on visi.codi_unid_orga_visi = unid_orga.codi_unid_orga]]>
+		<![CDATA[SELECT codi_visi, codi_unid_orga, nomb_unid_orga, codi_luga_entr, codi_luga_sali, fech_hora_entr_visi, fech_hora_sali_visi, moti_visi, visi.fech_alta, visi.fech_baja, visi.esta from visi inner join unid_orga on visi.codi_unid_orga_visi = unid_orga.codi_unid_orga and nomb_unid_orga like '%$P!{nombUnidOrga}%']]>
 	</queryString>
 	<field name="codi_visi" class="java.lang.Long">
 		<fieldDescription><![CDATA[CODIGO DE LA VISITA]]></fieldDescription>

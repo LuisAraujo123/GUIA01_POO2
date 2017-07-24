@@ -5,7 +5,7 @@ $(document).ready(function() {
             var ctxt = $(this).data("ctxt");
             var repo = $(this).data("repo");
             var prms = $(this).data("prms");
-            var repoURL = ctxt + "/RepoVisiUnidServ?nombRepo=" + repo + "&" + prms;
+            var repoURL = ctxt + "/RepoServ?nombRepo=" + repo + "&" + prms;
             var options = {
                 pdfOpenParams: {
                         navpanes: 0,
@@ -22,12 +22,5 @@ $(document).ready(function() {
             $("#ModaRepo").modal("show");
             return false;
         });
-    };
-    initObjeRepo();
-});
-
-function initObjeRepo()
-{
-    $("#testBton").fnOpenModaRepo();
-    $("#testBtonParams").fnOpenModaRepo();
-} 
+    }; 
+}); 

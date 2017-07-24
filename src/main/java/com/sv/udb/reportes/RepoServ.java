@@ -13,6 +13,7 @@ import java.sql.Connection;
 import java.sql.SQLException;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Set;
 import javax.servlet.ServletException;
 import javax.servlet.ServletOutputStream;
 import javax.servlet.annotation.WebServlet;
@@ -26,8 +27,8 @@ import net.sf.jasperreports.engine.JasperRunManager;
  *
  * @author bernardo
  */
-@WebServlet(name = "RepoVisiUnidServ", urlPatterns = {"/RepoVisiUnidServ"})
-public class RepoVisiUnidServ extends HttpServlet {
+@WebServlet(name = "RepoServ", urlPatterns = {"/RepoServ"})
+public class RepoServ extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -46,18 +47,26 @@ public class RepoVisiUnidServ extends HttpServlet {
         {
             Connection cn = new Conexion().getConn();
             Map params = request.getParameterMap();
-            for(Object temp : params.entrySet())
+            Map parametros = new HashMap();
+            String reporte = "";
+            for(Map.Entry temp : (Set<Map.Entry>)params.entrySet())
             {
-                System.err.println("Params: "+temp);
+                if(temp.getKey().equals("nombRepo"))
+                {
+                    //Concatena el nombre del reporte con .jasper
+                    reporte = String.format("%s.jasper", request.getParameter(String.valueOf(temp.getKey())));
+                }
+                else
+                {
+                    parametros.put(temp.getKey(), request.getParameter(String.valueOf(temp.getKey())));
+                }
             }
-            Map parametros = null;
-            String reporte ="repo01unidOrga.jasper";
             byte[] bytes = null;
             String urlreporte=getServletContext().getRealPath("/reportes/"+reporte);
             try {
                 bytes=JasperRunManager.runReportToPdf(urlreporte, parametros,cn);
                 response.setContentType("application/pdf");
-                response.setHeader("Content-Disposition", "inline; filename=VisitasUnidadOrg.pdf");
+                response.setHeader("Content-Disposition", "inline; filename=archivo.pdf");
                 response.setContentLength(bytes.length);
                 out.write(bytes, 0, bytes.length);
                 out.flush();

@@ -1,0 +1,129 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="repo02persVisi" language="groovy" pageWidth="595" pageHeight="842" columnWidth="535" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="c532e170-ea5c-4418-9269-ce8679227ff9">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<style name="Title" fontName="Arial" fontSize="26" isBold="true" pdfFontName="Helvetica-Bold"/>
+	<style name="SubTitle" forecolor="#666666" fontName="Arial" fontSize="18"/>
+	<style name="Column header" forecolor="#666666" fontName="Arial" fontSize="12" isBold="true"/>
+	<style name="Detail" fontName="Arial" fontSize="12"/>
+	<parameter name="apelPers" class="java.lang.String">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<queryString>
+		<![CDATA[Select nomb_luga_acce, fech_hora_entr_visi, fech_hora_sali_visi, nomb_unid_orga from pers inner join visi on pers.codi_pers = visi.codi_pers_visi inner join luga_acce on visi.codi_luga_entr = luga_acce.codi_luga_acce inner join unid_orga on visi.codi_unid_orga_visi = unid_orga.codi_unid_orga and pers.apel_pers like '%$P!{apelPers}%']]>
+	</queryString>
+	<field name="nomb_luga_acce" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="fech_hora_entr_visi" class="java.sql.Timestamp">
+		<fieldDescription><![CDATA[FECHA Y HORA DE LA ENTRADA DE VISITA]]></fieldDescription>
+	</field>
+	<field name="fech_hora_sali_visi" class="java.sql.Timestamp">
+		<fieldDescription><![CDATA[FECHA Y HORA DE LA SALIDA DE VISITA]]></fieldDescription>
+	</field>
+	<field name="nomb_unid_orga" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="70" splitType="Stretch">
+			<image>
+				<reportElement x="275" y="0" width="300" height="64" uuid="373b0378-51aa-495c-acab-1342772f6afe"/>
+				<imageExpression><![CDATA["leaf_banner_green.png"]]></imageExpression>
+			</image>
+			<staticText>
+				<reportElement style="Title" x="0" y="0" width="135" height="33" uuid="c858144e-cd9b-4459-aaae-a53b8e8a14ef"/>
+				<textElement verticalAlignment="Middle"/>
+				<text><![CDATA[Visitas de:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="SubTitle" x="13" y="35" width="237" height="22" uuid="dff9aa4a-c413-46dd-8b07-590cf2c076b5"/>
+				<text><![CDATA[a las unidades organizativas]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="135" y="3" width="130" height="33" uuid="1676b56e-4523-4305-b315-a7ef613d5929"/>
+				<textElement>
+					<font size="22"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{apelPers}]]></textFieldExpression>
+			</textField>
+		</band>
+	</title>
+	<pageHeader>
+		<band splitType="Stretch"/>
+	</pageHeader>
+	<columnHeader>
+		<band height="27" splitType="Stretch">
+			<staticText>
+				<reportElement x="0" y="0" width="145" height="20" uuid="45dcfddc-0e6d-4555-ae81-eb7dcaa8d5b7"/>
+				<text><![CDATA[Lugar de acceso]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="145" y="0" width="170" height="20" uuid="413cad5c-d598-49f7-bfb3-c9700519a912"/>
+				<text><![CDATA[Unidad organizativa]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="315" y="0" width="118" height="20" uuid="e6787ac2-d0d2-46c2-8b00-32058d474e2e"/>
+				<text><![CDATA[Entrada]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="433" y="0" width="120" height="20" uuid="9ccb87bc-77b3-4b50-a682-8cb9034eae60"/>
+				<text><![CDATA[Salida]]></text>
+			</staticText>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="24" splitType="Stretch">
+			<textField>
+				<reportElement x="0" y="0" width="145" height="20" uuid="88cc358e-336b-4e0f-b681-405fd5c3bcf3"/>
+				<textFieldExpression><![CDATA[$F{nomb_luga_acce}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="145" y="0" width="170" height="20" uuid="5ba1f808-1dcc-47b5-a023-2dd346b77b6e"/>
+				<textFieldExpression><![CDATA[$F{nomb_unid_orga}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="315" y="0" width="118" height="20" uuid="c724a627-eb3a-43ad-86fb-9f66b4049c58"/>
+				<textFieldExpression><![CDATA[$F{fech_hora_entr_visi}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="433" y="0" width="120" height="20" uuid="3e635ab0-8890-4bf2-ac4d-ce99dd676f56"/>
+				<textFieldExpression><![CDATA[$F{fech_hora_sali_visi}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<columnFooter>
+		<band height="5" splitType="Stretch"/>
+	</columnFooter>
+	<pageFooter>
+		<band height="20" splitType="Stretch">
+			<textField>
+				<reportElement style="Column header" x="433" y="0" width="80" height="20" uuid="e8079aee-1142-4e99-a3e5-dbae14ed8f50"/>
+				<textElement textAlignment="Right">
+					<font size="10" isBold="false"/>
+				</textElement>
+				<textFieldExpression><![CDATA["Page "+$V{PAGE_NUMBER}+" of"]]></textFieldExpression>
+			</textField>
+			<textField evaluationTime="Report">
+				<reportElement style="Column header" x="513" y="0" width="40" height="20" uuid="dd5eac20-e493-40e8-8980-8135399820b1"/>
+				<textElement>
+					<font size="10" isBold="false"/>
+				</textElement>
+				<textFieldExpression><![CDATA[" " + $V{PAGE_NUMBER}]]></textFieldExpression>
+			</textField>
+			<textField pattern="EEEEE dd MMMMM yyyy">
+				<reportElement style="Column header" x="0" y="0" width="197" height="20" uuid="5cce9b0b-dd36-400b-8919-e21f83270e99"/>
+				<textElement>
+					<font size="10" isBold="false"/>
+				</textElement>
+				<textFieldExpression><![CDATA[new java.util.Date()]]></textFieldExpression>
+			</textField>
+		</band>
+	</pageFooter>
+	<summary>
+		<band splitType="Stretch"/>
+	</summary>
+</jasperReport>
